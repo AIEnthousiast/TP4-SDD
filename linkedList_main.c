@@ -12,35 +12,6 @@
 
 BEGIN_TEST_GROUP(linkedList)
 
-/*
-TEST(monom_degree_cmp) {
-	monom_t v1 = {5.11, 7};
-	monom_t v2 = {3., 5};
-	monom_t v3 = {5.25, 7};
-
-	printf("\nComparaison des monomes : \n");
-	CHECK( monom_degree_cmp(&v1, &v2) > 0 );
-	CHECK( monom_degree_cmp(&v2, &v1) < 0 );
-	CHECK( monom_degree_cmp(&v1, &v3) == 0 );
-}
-*/
-
-/*
-TEST(monom_save2file) {
-	monom_t v = {5., 7};
-
-	// creation du flux de texte => buffer
-	char buffer[1024];
-	FILE * file = fmemopen(buffer, 1024, "w");
-	REQUIRE ( NULL != file);
-
-	monom_save2file(file, &v);
-
-	fclose(file);
-
-	CHECK( 0 == strcmp(buffer, "5.000 7\n") ); 
-}
-*/
 
 
 TEST(LL_init_list) {

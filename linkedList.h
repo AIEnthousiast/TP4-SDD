@@ -6,7 +6,6 @@
 #ifndef __LINKEDLIST_H__
 #define __LINKEDLIST_H__
 
-#include "valCell.h"
 
 /** 
  * @struct cell_t
@@ -82,20 +81,6 @@ void LL_save_list_toFile(cell_t*, FILE *);
  
 void LL_save_list_toFileName(cell_t* , char *);
 
-/** 
- * @brief Search a value in a linked list, and return the address of the previous pointer
- * @param [in] xxx address of the head pointer
- * @param [in] xxx address of the value to search
- * @return the address of the previous pointer
- */
-
-/*cell_t** LL_search_prev(cell_t ** , cell_t* );*/
-
-/** 
- * @brief Delete a cell from a linked list
- * @param [in, out] xxx address of the previous pointer of the cell to delete
- */
-void LL_del_cell(cell_t** previous);
 
 
 /** 
