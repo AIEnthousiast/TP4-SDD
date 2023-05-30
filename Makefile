@@ -19,11 +19,21 @@ OBJ = $(SRC:%.c=%.o)
 OBJ_LL = linkedList_main.o linkedList.o teZZt.o
 HEADERS_LL = teZZt.h linkedList.h
 
-table_hashage_main: $(OBJ) $(HEADERS)
-	$(CC) $(OBJ) -o $@ $(LDFLAGS)
-	
-hash.o: hash.c $(HEADERS)
+#hash_table_main: $(OBJ) $(HEADERS)
+#	$(CC) $(OBJ) -o $@ $(LDFLAGS)
+
+loading.o: hash.c loading.c loading.h linkedList.h
+	$(CC) -c $< -o $@
+
+hashMain: hash_main.o hash.o linkedList.o teZZt.o
+	$(CC) hash_main.o hash.o linkedList.o teZZt.o -o $@
+
+hash_main.o: hash_main.c teZZt.h hash.h
 	$(CC) $(CFLAGS) -c $< -o $@
+
+hash.o: hash.c hash.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
 
 linkedList: $(OBJ_LL) $(HEADERS_LL)
 	$(CC) $(OBJ_LL) -o $@ $(LDFLAGS)

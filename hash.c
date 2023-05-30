@@ -1,5 +1,6 @@
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 #include "hash.h"
 
 
@@ -20,6 +21,14 @@ unsigned int hash_string(const char *str)
  */
 cell_t ** create_hash_table()
 {
+    cell_t* table_majeure[HASH_MAX];
+
+    for (int i = 0; i<HASH_MAX; i++)
+    {
+        table_majeure[i] = NULL;
+    }
+
+    return table_majeure;
 
 }
 
@@ -32,5 +41,5 @@ cell_t ** create_hash_table()
 
 char * research_in_hash_table()
 {
-    
+    return "A";
 }

@@ -1,7 +1,7 @@
 #ifndef LOADING_H
 #define LOADING_H
 
-#include "hash.c"
+#include "hash.h"
 
 
 /** 

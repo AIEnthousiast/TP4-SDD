@@ -4,6 +4,8 @@
 
 #define HASH_MAX 29 
 
+#include "linkedList.h"
+
 /** 
  * @brief Fonction de hachage
  * @param [in] str : chaine à hacher
