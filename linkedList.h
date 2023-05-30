@@ -6,7 +6,6 @@
 #ifndef __LINKEDLIST_H__
 #define __LINKEDLIST_H__
 
-
 /** 
  * @struct cell_t
  * @brief Data structure of the linked list's cell
