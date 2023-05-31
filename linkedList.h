@@ -88,5 +88,13 @@ void LL_save_list_toFileName(cell_t* , char *);
  */
 void LL_free_list(cell_t**);
 
+/** 
+ * @brief Search a value in a linked list, and return the address of the previous pointer
+ * @param [in] xxx address of the head pointer
+ * @param [in] xxx address of the value to search
+ * @param  xxx fonction pointer for comparison of two values
+ * @return the address of the previous pointer
+ */
+cell_t** LL_search_prev(cell_t** head, char * key);
 
 #endif

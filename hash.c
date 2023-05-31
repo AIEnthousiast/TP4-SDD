@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "hash.h"
-
+#include <string.h>
+#include "linkedList.h"
 
 
 unsigned int hash_string(const char *str)
@@ -21,15 +22,17 @@ unsigned int hash_string(const char *str)
  */
 cell_t ** create_hash_table()
 {
-    cell_t* table_majeure[HASH_MAX];
+    cell_t** table_majeure = malloc(HASH_MAX * sizeof *table_majeure);
 
-    for (int i = 0; i<HASH_MAX; i++)
+    if (table_majeure != NULL)
     {
-        table_majeure[i] = NULL;
+        for (int i = 0; i<HASH_MAX; i++)
+        {
+            LL_init_list(&(table_majeure[i]));
+        }
     }
 
     return table_majeure;
-
 }
 
 
@@ -39,7 +42,37 @@ cell_t ** create_hash_table()
  * @return la valeur correspondant à la clé fournie
  */
 
-char * research_in_hash_table()
+char * research_in_hash_table(cell_t ** table_majeure,char * key)
 {
-    return "A";
+    unsigned int index = hash_string(key);    
+    cell_t * cour = table_majeure[index];
+
+    while (cour != NULL && strcmp(cour->cle,key) != 0)
+    {
+        cour = cour->next;
+    }
+
+    if (cour != NULL)
+    {
+        return cour->val;
+    }
+
+    return NULL;
+}
+
+void insert_in_hash_table(cell_t ** table_majeure, char * key, char * value)
+{
+    unsigned int index = hash_string(key);
+    LL_add_cell(LL_search_prev(&(table_majeure[index]),key),LL_create_cell(key,value));
+}
+
+void free_hash_table(cell_t** table_majeure)
+{
+    for (unsigned int i = 0; i < HASH_MAX;i++)
+    {
+        LL_free_list(&(table_majeure[i]));
+    }
+
+    free(table_majeure);
+
 }

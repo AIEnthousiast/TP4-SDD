@@ -25,7 +25,7 @@ HEADERS_LL = teZZt.h linkedList.h
 loading.o: hash.c loading.c loading.h linkedList.h
 	$(CC) -c $< -o $@
 
-hashMain: hash_main.o hash.o linkedList.o teZZt.o
+hash_main: hash_main.o hash.o linkedList.o teZZt.o
 	$(CC) hash_main.o hash.o linkedList.o teZZt.o -o $@
 
 hash_main.o: hash_main.c teZZt.h hash.h

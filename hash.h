@@ -6,6 +6,8 @@
 
 #include "linkedList.h"
 
+
+
 /** 
  * @brief Fonction de hachage
  * @param [in] str : chaine à hacher
@@ -28,8 +30,23 @@ cell_t ** create_hash_table();
  * @return la valeur correspondant à la clé fournie
  */
 
-char * research_in_hash_table();
+char * research_in_hash_table(cell_t ** table_majeure,char * key);
 
 
+/** 
+ * @brief Insertion dans une table de hachage
+ * @param [in] table_majeure: la table majeure de la table de hachage
+ * @param [in] key: la clé de la valeur à insérer
+ * @param [in] value: la valeur de l'élément à insérer
+ */
+
+void insert_in_hash_table(cell_t ** table_majeure, char * key, char * value);
+
+
+/** 
+ * @brief Libération d'une table de hachage
+ * @param [in] table_majeure: la table majeure de la table de hachage
+ */
+void free_hash_table(cell_t** table_majeure);
 
 #endif

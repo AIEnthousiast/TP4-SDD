@@ -90,6 +90,32 @@ cell_t** LL_create_list_fromFileName(cell_t** head, char* filename)
 }
 */
 
+
+/** 
+ * @brief Search a value in a linked list, and return the address of the previous pointer
+ * @param [in] xxx address of the head pointer
+ * @param [in] xxx address of the value to search
+ * @param  xxx fonction pointer for comparison of two values
+ * @return the address of the previous pointer
+ */
+cell_t** LL_search_prev(cell_t** head, char * key)
+{
+
+    cell_t** previous = head;
+    cell_t* current;
+    
+    current = *head;
+
+    while (current != NULL && strcmp(current->cle,key) < 0 )
+    {
+        previous = &(current->next);  //move the previous pointer inside of the data structure
+        current = current->next;
+    }
+
+    return previous;
+}
+
+
 /** 
  * @brief Print/Write the linked list on/to an output stream
  * @param [in] xxx file pointer of an output stream
