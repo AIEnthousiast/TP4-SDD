@@ -27,6 +27,35 @@ TEST(insert_in_hash_table)
     free_hash_table(table_majeure);
 }
 
+TEST(load_dictionnary)
+{
+
+    cell_t ** table_majeure = create_hash_table();
+    REQUIRE(NULL != table_majeure);
+
+    load_dictionnary(table_majeure,"fr_ang.txt");
+    
+    REQUIRE(NULL != table_majeure[hash_string("le")]);
+
+    CHECK(0 == strcmp(research_in_hash_table(table_majeure,"de"),"of"));
+
+    free_hash_table(table_majeure);
+}
+
+
+TEST(translate)
+{
+    cell_t ** table_majeure = create_hash_table();
+    REQUIRE(NULL != table_majeure);
+
+    load_dictionnary(table_majeure,"fr_ang.txt");
+
+    translate(table_majeure,"le soleil");
+
+    free_hash_table(table_majeure);
+}
+
+
 
 
 

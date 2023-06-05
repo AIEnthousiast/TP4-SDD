@@ -43,10 +43,18 @@ char * research_in_hash_table(cell_t ** table_majeure,char * key);
 void insert_in_hash_table(cell_t ** table_majeure, char * key, char * value);
 
 
+void load_dictionnary(cell_t** table_majeure, char * filename);
+
+void translate(cell_t ** table_majeure, char * phrase);
+
+
 /** 
  * @brief Libération d'une table de hachage
  * @param [in] table_majeure: la table majeure de la table de hachage
  */
 void free_hash_table(cell_t** table_majeure);
+
+
+
 
 #endif
