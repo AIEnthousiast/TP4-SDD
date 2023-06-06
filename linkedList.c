@@ -23,7 +23,7 @@ void LL_init_list(cell_t **adrHeadPt)
  * @param [in] xxx address of the data
  * @return address of the new cell
  */
-cell_t * LL_create_cell(char * cle, char * val)
+cell_t * LL_create_cell(char * cle, char * val,int nbOcc)
 {
     cell_t * newCell;
 
@@ -35,6 +35,7 @@ cell_t * LL_create_cell(char * cle, char * val)
         newCell->val = (char *) malloc(sizeof(char)*(strlen(val) + 1));
         strcpy(newCell->cle, cle);
         strcpy(newCell->val, val);
+        newCell->nbOcc = nbOcc;
         newCell->next = NULL;
     }
     
@@ -98,23 +99,58 @@ cell_t** LL_create_list_fromFileName(cell_t** head, char* filename)
  * @param  xxx fonction pointer for comparison of two values
  * @return the address of the previous pointer
  */
-cell_t** LL_search_prev(cell_t** head, char * key)
+cell_t** LL_search_prev(cell_t** head, char * key, int nbOcc,cell_t *** prevAncient)
 {
 
     cell_t** previous = head;
     cell_t* current;
+    *prevAncient = NULL;
     
     current = *head;
 
-    while (current != NULL && strcmp(current->cle,key) < 0 )
+    while (current != NULL && current->nbOcc > nbOcc)
     {
+        if (*prevAncient == NULL && strcmp(current->cle,key) == 0)
+        {
+            *prevAncient =  previous;
+        }
         previous = &(current->next);  //move the previous pointer inside of the data structure
-        current = current->next;
+        current = current->next;        
+    }
+
+    if (*prevAncient == NULL)
+    {
+         while (current != NULL && strcmp(current->cle,key) != 0)
+        {
+            current = current->next;
+            *prevAncient = &(current->next);
+        }
+
+        if (current == NULL)
+        {
+            *prevAncient = NULL;
+        }
     }
 
     return previous;
 }
 
+
+void LL_del_cell(cell_t** previous)
+{
+
+    cell_t* current;
+    cell_t* next;
+    
+    if (*previous != NULL)
+    {
+        current = *previous;
+        next = (*previous)->next;
+        
+        *previous = next; //change the value pointed by previous
+        free(current);  //liberate the memory
+    } 
+}
 
 /** 
  * @brief Print/Write the linked list on/to an output stream

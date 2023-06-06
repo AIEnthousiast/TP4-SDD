@@ -19,7 +19,7 @@ TEST(insert_in_hash_table)
 {
     cell_t ** table_majeure = create_hash_table();
 
-    insert_in_hash_table(table_majeure,"aaa","A");
+    insert_in_hash_table(table_majeure,"aaa","A",10);
 
     REQUIRE(NULL != table_majeure[hash_string("aaa")]);
     CHECK(0 == strcmp(research_in_hash_table(table_majeure,"aaa"),"A"));
@@ -34,10 +34,12 @@ TEST(load_dictionnary)
     REQUIRE(NULL != table_majeure);
 
     load_dictionnary(table_majeure,"fr_ang.txt");
-    
+
+    insert_in_hash_table(table_majeure,"de","bonjour",100);
+
     REQUIRE(NULL != table_majeure[hash_string("le")]);
 
-    CHECK(0 == strcmp(research_in_hash_table(table_majeure,"de"),"of"));
+    CHECK(0 == strcmp(research_in_hash_table(table_majeure,"de"),"bonjour"));
 
     free_hash_table(table_majeure);
 }
@@ -50,7 +52,7 @@ TEST(translate)
 
     load_dictionnary(table_majeure,"fr_ang.txt");
 
-    translate(table_majeure,"le soleil");
+    translate(table_majeure,"la main du gardian");
 
     free_hash_table(table_majeure);
 }

@@ -60,10 +60,19 @@ char * research_in_hash_table(cell_t ** table_majeure,char * key)
     return NULL;
 }
 
-void insert_in_hash_table(cell_t ** table_majeure, char * key, char * value)
+void insert_in_hash_table(cell_t ** table_majeure, char * key, char * value,int nbOcc)
 {
     unsigned int index = hash_string(key);
-    LL_add_cell(LL_search_prev(&(table_majeure[index]),key),LL_create_cell(key,value));
+    cell_t ** prevAncient = NULL;
+    cell_t ** prev = LL_search_prev(&(table_majeure[index]),key, nbOcc, &prevAncient);
+    
+    if (prevAncient != NULL )
+    {
+        
+        LL_del_cell(prevAncient);
+    }
+
+    LL_add_cell(prev,LL_create_cell(key,value,nbOcc));
 }
 
 
@@ -79,7 +88,8 @@ void load_dictionnary(cell_t** table_majeure, char * filename)
 
         while (fscanf(f,"%[^;];%[^;];%[^\n]\n",key,value,temp) > 0)
         {
-            insert_in_hash_table(table_majeure,key,value);
+            int nbOcc = atoi(temp);
+            insert_in_hash_table(table_majeure,key,value,nbOcc);
         }
 
         fclose(f);
@@ -106,8 +116,12 @@ void translate(cell_t ** table_majeure, char * phrase)
 
         if (*fin != '\0')
         {
-            fin++;
+            while (*fin  == ' ')
+            {
+                fin++;    
+            }
             deb = fin;
+            
         }
     }
     printf("\n");

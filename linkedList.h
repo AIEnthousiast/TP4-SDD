@@ -18,6 +18,7 @@ typedef struct cell_t
 {
     char * cle;
     char * val;
+    int nbOcc;
     struct cell_t * next;
 } cell_t;
 
@@ -35,7 +36,7 @@ void LL_init_list(cell_t **adrHeadPt);
  * @return address of the new cell
  */
  
- cell_t* LL_create_cell(char * cle, char * val);
+ cell_t* LL_create_cell(char * cle, char * val,int nbOcc);
 
 /** 
  * @brief Insert a cell into a linked list at the given position
@@ -81,6 +82,8 @@ void LL_save_list_toFile(cell_t*, FILE *);
 void LL_save_list_toFileName(cell_t* , char *);
 
 
+void LL_del_cell(cell_t** previous);
+
 
 /** 
  * @brief Free the memory location occupied by the cells of a linked list
@@ -95,6 +98,6 @@ void LL_free_list(cell_t**);
  * @param  xxx fonction pointer for comparison of two values
  * @return the address of the previous pointer
  */
-cell_t** LL_search_prev(cell_t** head, char * key);
+cell_t** LL_search_prev(cell_t** head, char * key, int nbOcc,cell_t *** prevAncient);
 
 #endif

@@ -40,7 +40,7 @@ char * research_in_hash_table(cell_t ** table_majeure,char * key);
  * @param [in] value: la valeur de l'élément à insérer
  */
 
-void insert_in_hash_table(cell_t ** table_majeure, char * key, char * value);
+void insert_in_hash_table(cell_t ** table_majeure, char * key, char * value,int nbOcc);
 
 
 void load_dictionnary(cell_t** table_majeure, char * filename);
